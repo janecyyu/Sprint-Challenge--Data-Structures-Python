@@ -4,8 +4,8 @@ from collections import deque
 class RingBuffer:
     def __init__(self, capacity):
         self.capacity = capacity
-        self.data = []
         self.index = 0
+        self.data = deque()
 
     def append(self, item):
         if self.index < self.capacity:
@@ -15,10 +15,23 @@ class RingBuffer:
         self.index += 1
 
     def get(self):
-        return self.data
+        result = []
+        for i in self.data:
+            result.append(i)
+        return result
 
+# class RingBuffer:
+#     def __init__(self, capacity):
+#         self.capacity = capacity
+#         self.data = []
+#         self.index = 0
 
-ring = RingBuffer(3)
-ring.append(1)
-ring.append(2)
-print(ring)
+#     def append(self, item):
+#         if self.index < self.capacity:
+#             self.data.append(item)
+#         else:
+#             self.data[self.index % self.capacity] = item
+#         self.index += 1
+
+#     def get(self):
+#         return self.data
